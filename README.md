@@ -48,7 +48,7 @@ npm install
 and then run:
 
 ```console
-npm run del
+npm run dev
 ```
 
 Now, open the web browser to http://localhost:3000 and type the question.
