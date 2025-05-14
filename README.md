@@ -18,7 +18,8 @@ to install the dependencies
 
 then create a **.env** ([MistralAI optaining the API key](https://console.mistral.ai/api-keys/)) file in the same directory that contains open ai key and add a row like this MISTRALAI_API_KEY = "mistralai_key"
 
-unzip file into rtdocs folder: it contains .html files.
+- unzip file into rtdocs folder: it contains .html files.
+- delete the rtdocs_files.zip.
 
 then run:
 
