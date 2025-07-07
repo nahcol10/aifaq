@@ -23,6 +23,7 @@ def authenticated_menu():
         st.sidebar.page_link("pages/user_management.py", label="User Management")
         st.sidebar.page_link("pages/admin_responses.py", label="Admin Responses")
         st.sidebar.page_link("pages/vector_db_content.py", label="DB Content")
+        st.sidebar.page_link("pages/admin_feedback.py", label="Feedbacks")
     st.sidebar.page_link("app.py", label="About")
 
 def unauthenticated_menu():
