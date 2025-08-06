@@ -40,7 +40,7 @@ def get_ragchain(filter):
         model = ChatOpenAI(
             openai_api_key=openai_api_key,
             model=config_data["model_name"],
-            temperature=0.7
+            temperature=config_data.get("temperature", 0.7)
         )
     
     # Check if vector database exists
@@ -54,6 +54,9 @@ def get_ragchain(filter):
         )
 
     # Load local vector db
+    # Note: allow_dangerous_deserialization is set to True. This is a security risk if the
+    # index is from an untrusted source. It is needed here because the index was created
+    # with a different version of faiss-cpu.
     docsearch = FAISS.load_local(config_data["persist_directory"], embeddings, allow_dangerous_deserialization=True)
 
     # Define a retriever interface
