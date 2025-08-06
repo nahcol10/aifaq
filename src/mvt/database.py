@@ -6,10 +6,11 @@ import re
 # This script creates a SQLite database to store user information.
 # It includes functions to create a connection to the database, create a table for users,
 # insert a new user, update user information, and retrieve user data.
-def create_connection():
+def create_connection(db_file="users.db"):
+    """ create a database connection to a SQLite database """
     conn = None
     try:
-        conn = sqlite3.connect('users.db')
+        conn = sqlite3.connect(db_file)
     except sqlite3.Error as e:
         print(e)
     return conn
@@ -136,7 +137,6 @@ def create_feedback_table(conn):
                     reason TEXT,
                     timestamp TEXT
                 );'''
-        # ==================== ADDITIONAL FUNCTIONS FOR OTHER TABLES ====================
         conn.cursor().execute(sql)
         conn.commit()
     except sqlite3.Error as e:
@@ -441,6 +441,7 @@ def create_all_tables(conn):
     """Create all tables in the database"""
     create_table(conn)  # users table
     create_prompts_table(conn)
+    create_feedback_table(conn)
     create_response_table(conn)
     create_document_table(conn)
     create_docs_response_table(conn)
@@ -573,6 +574,3 @@ def migrate_text_file_to_database(conn, responses_file="responses.txt"):
     
     return migrated_count
 
-if __name__ == "__main__":
-    conn = create_connection()
-    insert_user(conn,"dev","dev@example.com","admin")
