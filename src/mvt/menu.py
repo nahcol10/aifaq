@@ -3,16 +3,12 @@ import streamlit as st
 def handle_logout():
     """Handle logout action and state cleanup"""
     if st.sidebar.button("Log out"):
-        st.session_state['user_type'] = None
-        st.session_state['username'] = None
-        st.session_state.pop('first_login', None)
+        for key in list(st.session_state.keys()):
+            del st.session_state[key]
         st.logout()
         st.switch_page("app.py")
 
 def authenticated_menu():
-    # Show logout button at the top of sidebar
-    handle_logout()
-    
     # Show a navigation menu for authenticated users
     st.sidebar.page_link("pages/chatbot.py", label="AIFAQ ChatBot")
     if st.session_state.user_type in ["admin"]:

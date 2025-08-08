@@ -1,5 +1,5 @@
 import streamlit as st
-from menu import menu
+from menu import menu, handle_logout
 from database import create_connection, create_table, create_prompts_table, get_user, insert_user
 from homepage import gethomepage
 import os
@@ -162,5 +162,7 @@ if operation_mode == "dev":
         create_prompts_table(conn)
         conn.close()
 
-# Show menu
+# Show menu and logout button
+if "user_type" in st.session_state and st.session_state.user_type is not None:
+    handle_logout()
 menu()
